@@ -1,0 +1,236 @@
+code: |
+    class CallMe:
+        def __call__(self, *args, **kwargs): 
+            print('Called:', args, kwargs)  
+    
+    C = CallMe()
+    C(4, 5, 6,  x=10, y=20)
+
+output: "Called: (4, 5, 6) {'x': 10, 'y': 20}"
+tag: 
+ - class/method/call
+
+---
+
+code: |
+    class Prod:
+            def __init__(self, value): 
+                 self.value = value
+            def __call__(self, other):
+                 print(self.value * other)
+    
+    X = Prod(3) 
+    X(3)       
+
+output: "9"
+tag: 
+ - class/method/call
+
+---
+
+code: |
+
+    class NumOperations():
+        def __init__(self, math_list):
+            self.math_list = math_list
+    
+        def __mul__(self, other):
+            mullst = [x * y for x, y in zip(self.math_list, other.math_list)]
+            return NumOperations(mullst)
+    
+        def __repr__(self):
+            return str(self.math_list)
+    
+    q = NumOperations([1, 1, 0]) * NumOperations([10, 9, 8])
+    print('Multiplication: ' + str(q))     
+
+output: "[10, 9, 0]"
+tag: 
+ - class/method/repr #class/method/mul
+
+---
+
+code: |
+    from math import ceil
+    
+    class Number:
+        def __init__(self, number):
+            self.number = number
+    
+        def __ceil__(self):
+            self.number = ceil(self.number)
+    
+    number = Number(1.1)
+    print(ceil(number)) 
+
+output: "None"
+tag: 
+ - class/method/ceil
+
+---
+
+code: |
+    from math import ceil
+    
+    class Number:
+        def __init__(self, number):
+            self.number = number
+    
+        def __ceil__(self):
+            self.number = ceil(self.number)
+    
+    number = Number(1.1)
+    print(ceil(number)) 
+
+output: "None"
+tag: 
+ - class/method/ceil
+
+---
+
+code: |
+    from math import ceil
+    
+    class Number:
+        def __init__(self, number):
+            self.number = number
+    
+        def __ceil__(self):
+            return ceil(self.number)
+    
+    number = Number(1.1)
+    print(ceil(number)) 
+
+output: "2"
+tag: 
+ - class/method/ceil
+
+---
+
+code: |
+    class Point:
+        def __init__(self, name, x, y):
+            self.name = name
+            self.x = x
+            self.y = y
+    
+        def __str__(self):
+            return '{}({}, {})'.format(self.name, self.x, self.y)
+    
+    points = [Point('A', 0, 3), Point('B', 4, 0)]
+    print(points[0])
+
+output: "A(0, 3)"
+tag: 
+ - class/method/str
+
+---
+
+code: |
+    class Number:
+        def __init__(self, number):
+            self.number = number
+    
+        def __iadd__(self, other):
+            self.number += other
+            return self.number
+    
+    number = Number(10.3)
+    number += 20
+    print(number)
+
+output: "30.3"
+tag: 
+ - class/method/iadd
+
+---
+
+code: |
+    class MyDict(dict):
+    
+        def __missing__(self, key):
+            return -1
+    
+    my_dict = MyDict()
+    my_dict[0] = 1
+    
+    print(my_dict[1])
+
+output: "-1"
+tag: 
+ - class/method/missing
+
+---
+
+code: |
+    class Test:
+    
+        def __init__(self, number):
+            self.number = number
+    
+        def __divmod__(self, other):
+            return self.number % other
+    
+    a = Test(10)
+    b = Test(3)
+    print(divmod(a, b))
+
+output: "TypeError: unsupported operand type(s) for %: 'int' and 'Test'"
+tag: 
+ - class/method/divmod
+
+---
+
+code: |
+    class MyContainer:
+    
+        def __init__(self):
+            self.items = [1, 2]
+    
+        def __contains__(self, item):
+            return item in self.items
+    
+    my_container = MyContainer()
+    
+    print(1 in my_container)
+
+output: "True"
+tag: 
+ - class/method/contains
+
+---
+
+code: |
+    import math
+    
+    class Number:
+        def __init__(self, number):
+            self.number = number
+    
+        def __floor__(self):
+            return math.floor(self.number)
+    
+    number = Number(1.1)
+    print(math.floor(number))
+
+output: "1"
+tag: 
+ - class/method/floor
+
+---
+
+code: |
+    import math
+    
+    class Number:
+        def __init__(self, number):
+            self.number = number
+    
+    number = Number(1.1)
+    print(math.floor(number))
+
+output: "TypeError: must be real number, not Number"
+tag: 
+ - class/method/floor
+
+

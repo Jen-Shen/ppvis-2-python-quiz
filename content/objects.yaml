@@ -1,0 +1,116 @@
+code: |
+    class Test:
+        test = 5
+    
+        def init(self, test):
+            self.test = test
+    
+    obj = Test()
+    
+    print(hasattr(Test, 'test'))
+
+output: "True"
+tag: 
+ - object/variable  #object/hasattr
+
+---
+
+code: |
+
+    class Test:
+        test = 5
+    
+        def init(self, test):
+            self.test = test
+    
+    obj = Test()
+    
+    print(hasattr(obj, '5'))
+
+output: "False"
+tag: 
+ - object/variable  #object/hasattr
+
+---
+
+code: |
+    class Test:
+        
+        def init(self, test):
+            test = test
+    
+    obj = Test()
+    
+    print(hasattr(obj, 'test'))
+
+output: "False"
+tag: 
+ - object/variable  #object/hasattr
+
+---
+
+code: |
+    class Test:
+        test = 6
+    
+        def init(self, test):
+            self.test = test
+    
+    obj = Test()
+    
+    setattr(obj, 'test', 5)
+    print(obj.test)
+
+output: "5"
+tag: 
+ - object/variable  #object/setattr
+
+---
+
+code: |
+    class Test:
+        test1 = 6
+    
+        def init(self, test):
+            self.test1 = test
+    
+    obj = Test()
+    
+    setattr(obj, 'test2', 5)
+    print(obj.test2)
+
+output: "5"
+tag: 
+ - object/variable  #object/setattr
+
+---
+
+code: |
+    class Employee:
+        n = 0
+    
+        def __init__(self, emp_id):
+            self.i = emp_id
+    
+    x = Employee(15)
+    
+    print(callable(Employee))
+
+output: "True"
+tag: 
+ - object/variable  #object/callable
+
+---
+
+code: |
+    class Number:
+        def __init__(self, number):
+            self.number = number
+    
+    number = Number(10.3)
+    number += 20
+    print(number)
+
+output: "TypeError: unsupported operand type(s) for +=: 'Number' and 'int'""
+tag: 
+ - object/variable 
