@@ -1,0 +1,103 @@
+code: |
+    class Test:
+        test = 5
+    
+        def init(self, test):
+            self.test = test
+    
+    obj = Test()
+    
+    print(hasattr(Test, 'test'))
+
+output: "True"
+tag: 
+ - object/variable  
+ - object/hasattr
+
+---
+
+code: |
+
+    import copy
+
+    list1 = [1, 2, 3, [1, 5], ]
+    list2 = copy.copy(list1)
+    list2[3][0] = 2
+    print(list1, list2)
+
+output: "[1, 2, 3, [2, 5]] [1, 2, 3, [2, 5]]"
+tag: 
+ - object/reference  
+ - list/literal
+
+---
+
+code: |
+    class Test:
+        
+        def init(self, test):
+            test = test
+    
+    obj = Test()
+    
+    print(hasattr(obj, 'test'))
+
+output: "False"
+tag: 
+ - object/variable  
+ - build-in/hasattr
+
+---
+
+code: |
+	a = 40
+	b = a
+	c = [b]
+
+	del a
+	b = 100
+	print(c[0])
+
+output: "40"
+tag: 
+ - object/reference 
+ - build-in/del
+
+---
+
+code: |
+    class Test:
+        test1 = 6
+    
+        def init(self, test):
+            self.test1 = test
+    
+    obj = Test()
+    
+    setattr(obj, 'test2', 5)
+    print(obj.test2)
+
+output: "5"
+tag: 
+ - object/variable  
+ - build-in/setattr
+
+---
+
+code: |
+    class Employee:
+        n = 0
+    
+        def __init__(self, emp_id):
+            self.i = emp_id
+    
+    x = Employee(15)
+    
+    print(callable(Employee))
+
+output: "True"
+tag: 
+ - object/variable  
+ - build-in/callable
+
+
